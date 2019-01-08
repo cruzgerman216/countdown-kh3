@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Abril+Fatface"
+      rel="stylesheet"
+    />
+    <title>Kingdom Hearts 3 Countdown Clock</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      * {
+        font-family: "Abril Fatface", cursive;
+        cursor: url(keyblade.png), pointer;
+      }
+      body {
+        text-align: center;
+      }
+      .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+      }
+      .container2 {
+        height: 100px;
+        width: 600px;
+      }
+      .container {
+        font-family: sans-serif;
+        display: inline-block;
+        font-weight: 100;
+        text-align: center;
+        font-size: 50px;
+        margin-top: 50px;
+      }
+      .container > div {
+        padding: 10px;
+        border-radius: 3px;
+        background: #7e7e7e;
+        opacity: 0.9;
+        display: inline-block;
+        margin-right: 5px;
+        position: relative;
+      }
+      img {
+        width: 100px;
+      }
+      audio {
+        display: block;
+      }
+      #player {
+        width: 100px;
+      }
+      #myCheck {
+        background-image: url(test2.png);
+        background-size: cover;
+      }
+      #goofy {
+        background-image: url(test2.png);
+        background-size: cover;
+      }
+      #micky {
+        background-image: url(micky.png);
+        background-size: cover;
+      }
+      #sora {
+        background-image: url(sora.png);
+        background-size: cover;
+      }
+      #donald {
+        background-image: url(donald.png);
+        background-size: cover;
+      }
+      .container div > span {
+        padding: 15px;
+        border-radius: 3px;
+        background: #d6d6d6;
+        display: inline-block;
+        opacity: 0.5;
+      }
+      .smalltext {
+        padding-top: 5px;
+        font-size: 16px;
+      }
+      .fullscreen-video-wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        z-index: -2;
+      }
+      .fullscreen-video-wrap video {
+        min-height: 100%;
+        min-width: 100%;
+        width: 200px;
+      }
+      .header-overlay {
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        z-index: -1;
+        background: #c4b6ff8d;
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="fullscreen-video-wrap">
+      <video src="kh3background.mp4" muted="muted" autoplay="" loop=""></video>"
+    </div>
+    <div class="header-overlay"></div>
+    <img class="center" src="heading2.png" />
+
+    <!-- <iframe
+      class="center"
+      width="320"
+      height="300"
+      src="https://www.youtube.com/embed/lz1w_uW3lSE"
+    >
+    </iframe>-->
+
+    <!-- TRUE PLAYER 
+    <embed
+      hidden="true"
+      name="kh3quote"
+      src="kh3song3.wav"
+      loop="true"
+      autostart="false"
+    />
+ -->
+    <div class="container">
+      <!--  <audio controls autoplay>
+        <source src="kh3song3.wav" type="audio/mpeg" />
+      </audio>-->
+
+      <div id="goofy" onclick="myAudioFunction('A');">
+        <span id="days"></span>
+        <div class="smalltext">Days</div>
+      </div>
+      <div id="micky" onclick="myAudioFunction('B');">
+        <span id="hours"></span>
+        <div class="smalltext">Hours</div>
+      </div>
+      <div id="sora" onclick="myAudioFunction('C');">
+        <span id="minutes"></span>
+        <div class="smalltext">Minutes</div>
+      </div>
+      <div id="donald" onclick="myAudioFunction('D');">
+        <span id="seconds"></span>
+        <div class="smalltext">Seconds</div>
+      </div>
+    </div>
+    <script>
+      var aAudio = new Audio("goofyquote1.wav");
+      var bAudio = new Audio("mickeyquote1.wav");
+      var cAudio = new Audio("soraquote1.wav");
+      var dAudio = new Audio("donaldquote1.wav");
+
+      function myAudioFunction(letter) {
+        if (letter == "A") {
+          aAudio.play();
+        } else if (letter == "B") {
+          bAudio.play();
+        } else if (letter == "C") {
+          cAudio.play();
+        } else if (letter == "D") {
+          dAudio.play();
+        }
+      }
+      var countDownDate = new Date("Jan 12, 2019 00:00:00").getTime();
+
+      var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hours").innerHTML = hours;
+        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("seconds").innerHTML = seconds;
+
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("demo").innerHTML = "EXPIRED";
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
